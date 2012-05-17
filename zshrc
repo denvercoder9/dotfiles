@@ -1,0 +1,117 @@
+# oh-my-zsh stuff
+#
+#ZSH=$HOME/.oh-my-zsh
+#ZSH_THEME="robbyrussell"
+#plugins=(git)
+
+#source $ZSH/oh-my-zsh.sh
+
+# my own stuff
+
+alias .='source'
+alias ls='ls --color=always' # ls='ls --color=auto'
+alias l='ls -l'
+alias ll='ls -lA'
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -I'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias cd....='cd ../../..'
+alias cd.....='cd ../../../..'
+alias less='less -rM'
+
+# git stuff
+
+alias gff='git flow feature'
+alias gco-='git checkout -'
+alias gcd='git checkout develop'
+
+pg() {
+    (ps aux | head -n 1) && (ps aux | grep $1)
+}
+
+color() {
+    grep -E "$1|" --color=always $2
+}
+
+lat() {
+    if [[ -z $1 ]]; then NO=10
+    else NO=$1 fi
+    ls -lt | tail -n +2 | head -n $NO
+}
+
+# Only if in an X environment
+if [[ -n $DISPLAY ]]; then
+    setxkbmap se
+    setxkbmap -option ctrl:nocaps
+    xset -b # beep off
+fi
+
+if [ -e ~/.pythonstartup ]; then
+    export PYTHONSTARTUP=~/.pythonstartup
+fi
+
+AUTOJUMP_PATH=/usr/share/autojump/autojump.sh
+if [ -e $AUTOJUMP_PATH ]; then
+    . $AUTOJUMP_PATH
+fi
+
+VIRTUALENV_PATH=/usr/local/bin/virtualenvwrapper.sh
+if [ -e $VIRTUALENV_PATH ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Projects
+    . $VIRTUALENV_PATH
+fi
+
+if [ -e $HOME/scripts ]; then
+    export PATH=$PATH:$HOME/scripts
+    export PYTHONPATH=$PYTHONPATH:$HOME/scripts
+fi
+
+unsetopt beep notify
+
+bindkey \^W backward-kill-word
+bindkey \^U backward-kill-line
+
+DISABLE_AUTO_UPDATE='true'
+CASE_SENSITIVE="true"
+
+#setopt appendhistory autocd extendedglob nomatch
+setopt NO_SHARE_HISTORY
+setopt HIST_FIND_NO_DUPS
+
+# treat jobs like bash do
+setopt NO_HUP
+setopt NO_CHECK_JOBS
+
+# smarter completion
+setopt nolistambiguous
+setopt menu_complete
+
+unsetopt correct_all
+
+export EDITOR=vim
+
+set -o emacs
+
+zstyle ':completion:*:*:vi:*:*files' ignored-patterns '*.pyc'
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pyc'
+
+autoload zmv
+
+alias md5='md5sum'
+
+alias p='pushd .'
+alias o='popd'
+alias -s py=vim
+
+if [ -e /usr/bin/colordiff ]; then
+    alias diff=colordiff
+fi
+
+alias psy='pss --py'
