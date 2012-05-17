@@ -1,0 +1,9 @@
+[user]
+	name = Fredrik
+	email = fredrik.melander@gmail.com
+[push]
+	default = upstream
+[core]
+	excludesfile = .gitignore
+[color]
+	ui = true
