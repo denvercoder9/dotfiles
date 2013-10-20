@@ -1,10 +1,5 @@
-" general stuff
-
-set nocompatible        " vi compability off, keep this at the top
+set nocompatible
 filetype off
-
-" vundle again
-
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -12,15 +7,21 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-flake8'
 Bundle 'Lokaltog/vim-powerline' 
 Bundle 'kien/ctrlp.vim'
-
+"Bundle 'tpope/vim-surround'
+"Bundle 'davidhalter/jedi-vim'
 
 " vim-powerline settings
 
 set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
+"set encoding=utf-8 " Necessary to show Unicode glyphs
 set t_Co=256
-"let g:Powerline_symbols = 'fancy'
 
+" jedi-vim settings
+
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_select_first = 0
+"let g:jedi#use_tabs_not_buffers = 0
+"autocmd FileType python setlocal completeopt-=preview
 
 " language awareness
 syntax on
@@ -37,7 +38,10 @@ set confirm
 set backspace=eol,start,indent
 set autochdir
 set incsearch
-set clipboard=unnamed
+" set clipboard = unnamed
+set clipboard+=unnamed
+set timeoutlen=300
+
 
 " colors
 
@@ -56,6 +60,8 @@ set autoindent
 " key mappings
 
 let mapleader = ","
+
+vmap S :!sort<CR>
 
 " c = comment
 nmap <Leader>c <Esc>:s/^/#/<CR>
@@ -94,4 +100,3 @@ nmap <C-X> :bdelete<CR>
 " pre-fill some buffers
 
 let @d="import pdb; pdb.set_trace()"
-let @j="jj"

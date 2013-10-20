@@ -1,20 +1,20 @@
 # oh-my-zsh stuff
 #
-#ZSH=$HOME/.oh-my-zsh
-#ZSH_THEME="robbyrussell"
-#plugins=(git)
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="robbyrussell"
+plugins=(git)
 
-#source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # my own stuff
 
 alias .='source'
-alias ls='ls --color=always' # ls='ls --color=auto'
+#alias ls='ls --color=always' # ls='ls --color=auto'
 alias l='ls -l'
 alias ll='ls -lA'
 alias mv='mv -i'
 alias cp='cp -i'
-alias rm='rm -I'
+#alias rm='rm -I'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -46,11 +46,11 @@ lat() {
 }
 
 # Only if in an X environment
-if [[ -n $DISPLAY ]]; then
-    setxkbmap se
-    setxkbmap -option ctrl:nocaps
-    xset -b # beep off
-fi
+#if [[ -n $DISPLAY ]]; then
+#    setxkbmap se
+#    setxkbmap -option ctrl:nocaps
+#    xset -b # beep off
+#fi
 
 if [ -e ~/.pythonstartup ]; then
     export PYTHONSTARTUP=~/.pythonstartup
@@ -78,20 +78,24 @@ unsetopt beep notify
 bindkey \^W backward-kill-word
 bindkey \^U backward-kill-line
 
-DISABLE_AUTO_UPDATE='true'
-CASE_SENSITIVE="true"
+#DISABLE_AUTO_UPDATE='true'
+#CASE_SENSITIVE="true"
+
+#setopt autocd
+#setopt extendedglob
 
 #setopt appendhistory autocd extendedglob nomatch
-setopt NO_SHARE_HISTORY
-setopt HIST_FIND_NO_DUPS
+setopt no_share_history
+setopt hist_find_no_dups
 
 # treat jobs like bash do
-setopt NO_HUP
-setopt NO_CHECK_JOBS
+setopt no_hup
+setopt no_check_jobs
 
 # smarter completion
 setopt nolistambiguous
 setopt menu_complete
+setopt no_case_glob
 
 unsetopt correct_all
 
