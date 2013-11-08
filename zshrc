@@ -46,11 +46,11 @@ lat() {
 }
 
 # Only if in an X environment
-#if [[ -n $DISPLAY ]]; then
-#    setxkbmap se
-#    setxkbmap -option ctrl:nocaps
-#    xset -b # beep off
-#fi
+if [[ -n $DISPLAY ]]; then
+    setxkbmap se
+    setxkbmap -option ctrl:nocaps
+    xset -b # beep off
+fi
 
 if [ -e ~/.pythonstartup ]; then
     export PYTHONSTARTUP=~/.pythonstartup
@@ -100,7 +100,6 @@ setopt no_case_glob
 unsetopt correct_all
 
 export EDITOR=vim
-
 set -o emacs
 
 zstyle ':completion:*:*:vi:*:*files' ignored-patterns '*.pyc'
@@ -108,14 +107,18 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pyc'
 
 autoload zmv
 
-alias md5='md5sum'
-
 alias p='pushd .'
 alias o='popd'
 alias -s py=vim
+alias psy='pss --py'
 
 if [ -e /usr/bin/colordiff ]; then
     alias diff=colordiff
 fi
 
-alias psy='pss --py'
+if [ -e /usr/bin/md5sum ]; then
+    alias md5='md5sum'
+fi
+
+alias node="env NODE_NO_READLINE=1 rlwrap node"
+alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
