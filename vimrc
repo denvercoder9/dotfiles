@@ -7,6 +7,7 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-flake8'
 Bundle 'Lokaltog/vim-powerline' 
 Bundle 'kien/ctrlp.vim'
+"Bundle 'scrooloose/nerdcommenter'
 "Bundle 'tpope/vim-surround'
 "Bundle 'davidhalter/jedi-vim'
 
@@ -36,7 +37,7 @@ set ignorecase
 set hidden              " hidde buffers instead of closing them
 set confirm
 set backspace=eol,start,indent
-set autochdir
+"set autochdir
 set incsearch
 " set clipboard = unnamed
 set clipboard+=unnamed
