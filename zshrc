@@ -24,6 +24,8 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 alias less='less -rM'
 
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
 # git stuff
 
 alias gff='git flow feature'
@@ -55,10 +57,18 @@ if [ -e ~/.pythonstartup ]; then
     export PYTHONSTARTUP=~/.pythonstartup
 fi
 
+# LINUX
 AUTOJUMP_PATH=/usr/share/autojump/autojump.sh
 if [ -e $AUTOJUMP_PATH ]; then
     . $AUTOJUMP_PATH
+else 
+    AUTOJUMP_PATH=/usr/local/etc/autojump.sh
+    if [ -e $AUTOJUMP_PATH ]; then
+        . $AUTOJUMP_PATH
+    fi
 fi
+
+
 
 VIRTUALENV_PATH=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $VIRTUALENV_PATH ]; then
@@ -108,16 +118,16 @@ autoload zmv
 
 alias p='pushd .'
 alias o='popd'
-alias -s py=vim
+#alias -s py=vim
 alias psy='pss --py'
-
-if [ -e /usr/bin/colordiff ]; then
-    alias diff=colordiff
-fi
+alias node="env NODE_NO_READLINE=1 rlwrap node"
+alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
+alias pyclean='find . -regex ".*\.pyc$" -print -delete'
 
 if [ -e /usr/bin/md5sum ]; then
     alias md5='md5sum'
 fi
 
-alias node="env NODE_NO_READLINE=1 rlwrap node"
-alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
+if [ -e /usr/bin/colordiff ]; then
+    alias diff=colordiff
+fi

@@ -42,7 +42,8 @@ set incsearch
 " set clipboard = unnamed
 set clipboard+=unnamed
 set timeoutlen=300
-
+set wildmenu
+set lazyredraw
 
 " colors
 
