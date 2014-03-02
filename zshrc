@@ -23,6 +23,7 @@ alias cd...='cd ../..'
 alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 alias less='less -rM'
+alias mplayer='mplayer -really-quiet'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
@@ -47,7 +48,7 @@ lat() {
 }
 
 # Only if in an X environment
-if [[ -n $DISPLAY ]]; then
+if [[ $(uname) != "Darwin" && -n $DISPLAY ]]; then
     setxkbmap se
     setxkbmap -option ctrl:nocaps
     xset -b # beep off
@@ -67,8 +68,6 @@ else
         . $AUTOJUMP_PATH
     fi
 fi
-
-
 
 VIRTUALENV_PATH=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $VIRTUALENV_PATH ]; then
@@ -131,3 +130,7 @@ fi
 if [ -e /usr/bin/colordiff ]; then
     alias diff=colordiff
 fi
+
+workon dev
+
+export SERVER=46.163.115.107
