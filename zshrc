@@ -134,3 +134,11 @@ fi
 workon dev
 
 export SERVER=46.163.115.107
+
+eval "$(pip completion --zsh)"
+
+if [[ -e ~/.pythonstartup ]]; then
+    export PYTHONSTARTUP=~/.pythonstartup
+fi
+
+export PYTHONPATH=/Users/fredrik/projects

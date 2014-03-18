@@ -76,8 +76,9 @@ vmap <Leader>x <Esc>: '<, '>s/^#//<CR>
 " a couple of options mappings
 nmap <Leader>i :set invignorecase<CR>
 nmap <Leader>n :set invnumber<CR>
-"nmap <Leader>p :set invpaste<CR>
-"nmap <Leader>t :set invpaste<CR>
+nmap <Leader>t :set invpaste<CR>
+
+nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 
 nmap <Leader>y "*y
 nmap <Leader>d "*d
@@ -101,4 +102,4 @@ nmap <C-X> :bdelete<CR>
 
 " pre-fill some buffers
 
-let @d="import pdb; pdb.set_trace()"
+let @d="import ipdb; ipdb.set_trace()"
