@@ -11,6 +11,10 @@ alias .='source'
 #alias ls='ls --color=always' # ls='ls --color=auto'
 alias l='ls -l'
 alias ll='ls -lA'
+alias L='ls -l | less'
+alias LL='ls -la | less'
+alias lg='ls -l | grep'
+alias llg='ls -la | grep'
 alias mv='mv -i'
 alias cp='cp -i'
 #alias rm='rm -I'
@@ -52,6 +56,11 @@ if [[ $(uname) != "Darwin" && -n $DISPLAY ]]; then
     setxkbmap se
     setxkbmap -option ctrl:nocaps
     xset -b # beep off
+fi
+
+if [[ $(uname) == 'Darwin' ]]; then
+    export CLICOLOR_FORCE=1
+    alias ls='ls -G'
 fi
 
 if [ -e ~/.pythonstartup ]; then
