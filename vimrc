@@ -77,6 +77,7 @@ vmap <Leader>x <Esc>: '<, '>s/^#//<CR>
 nmap <Leader>i :set invignorecase<CR>
 nmap <Leader>n :set invnumber<CR>
 nmap <Leader>t :set invpaste<CR>
+nmap <Leader>h :set invhlsearch<CR>
 
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 
