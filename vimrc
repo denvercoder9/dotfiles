@@ -5,17 +5,18 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'vim-flake8'
-Bundle 'Lokaltog/vim-powerline' 
-Bundle 'kien/ctrlp.vim'
 "Bundle 'scrooloose/nerdcommenter'
 "Bundle 'tpope/vim-surround'
 "Bundle 'davidhalter/jedi-vim'
 
-" vim-powerline settings
-
+Bundle 'Lokaltog/vim-powerline' 
 set laststatus=2   " Always show the statusline
-"set encoding=utf-8 " Necessary to show Unicode glyphs
 set t_Co=256
+
+Bundle 'kien/ctrlp.vim'
+let g:ctrlp_custom_ignore = {
+\ 'file': '.pyc$'
+\ }
 
 " jedi-vim settings
 
@@ -39,7 +40,6 @@ set confirm
 set backspace=eol,start,indent
 "set autochdir
 set incsearch
-" set clipboard = unnamed
 set clipboard+=unnamed
 set timeoutlen=300
 set wildmenu
@@ -47,7 +47,6 @@ set lazyredraw
 
 " colors
 
-"colorscheme torte
 colorscheme desert
 
 " tabs and intendation
@@ -63,7 +62,8 @@ set autoindent
 
 let mapleader = ","
 
-vmap S :!sort<CR>
+" external commands
+vmap S :!sort -u<CR>
 
 " c = comment
 nmap <Leader>c <Esc>:s/^/#/<CR>
@@ -79,25 +79,22 @@ nmap <Leader>n :set invnumber<CR>
 nmap <Leader>t :set invpaste<CR>
 nmap <Leader>h :set invhlsearch<CR>
 
-nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
-
+" registers
 nmap <Leader>y "*y
 nmap <Leader>d "*d
 nmap <Leader>p "*p
 
-nmap K <Nop>
-imap jj <esc>
-
-cmap w!! w !sudo tee %
-
 " buffers
-
 nmap <C-J> :silent bnext<CR>
 nmap <C-K> :silent bprev<CR>
 nmap <C-X> :silent bdelete<CR>
 
-" experimental stuff that I try out..
+nmap K <Nop>
+imap jj <esc>
+nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
+cmap w!! w !sudo tee %
 
+" experimental stuff that I try out..
 "au BufWinLeave * silent! mkview
 "au BufWinEnter * silent! loadview
 
