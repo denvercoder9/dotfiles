@@ -91,9 +91,9 @@ cmap w!! w !sudo tee %
 
 " buffers
 
-nmap <C-J> :bnext<CR>
-nmap <C-K> :bprev<CR>
-nmap <C-X> :bdelete<CR>
+nmap <C-J> :silent next<CR>
+nmap <C-K> :silent bprev<CR>
+nmap <C-X> :silent bdelete<CR>
 
 " experimental stuff that I try out..
 
