@@ -19,6 +19,7 @@ set t_Co=256
 let g:ctrlp_custom_ignore = {
 \ 'file': '.pyc$'
 \ }
+let g:ctrlp_working_path_mode = ''
 
 " jedi-vim settings
 "let g:jedi#popup_on_dot = 0
