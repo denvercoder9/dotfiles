@@ -8,6 +8,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline' 
 Bundle 'kien/ctrlp.vim'
+Bundle 'jeetsukumaran/vim-buffergator'
 
 "Bundle 'davidhalter/jedi-vim'
 
