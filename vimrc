@@ -9,6 +9,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline' 
 Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'moll/vim-bbye'
 
 "Bundle 'davidhalter/jedi-vim'
 
@@ -108,9 +109,12 @@ nmap <Leader>p "*p
 " buffers
 nmap <C-J> :silent bnext<CR>
 nmap <C-K> :silent bprev<CR>
-nmap <C-X> :silent bdelete<CR>
+"nmap <C-X> :silent bdelete<CR>
+nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 
-nmap K <Nop>
+
+"nmap K <Nop>
+nmap K ^
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 map <Leader>e :silent NERDTreeToggle<CR>
@@ -123,4 +127,5 @@ cmap w!! w !sudo tee %
 
 " pre-fill some buffers
 
-let @d="import ipdb; ipdb.set_trace()"
+let @i="import ipdb; ipdb.set_trace()"
+let @d="import pudb; pudb.set_trace()"
