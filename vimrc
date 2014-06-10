@@ -8,6 +8,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline' 
 Bundle 'kien/ctrlp.vim'
+Bundle 'jeetsukumaran/vim-buffergator'
+Bundle 'moll/vim-bbye'
 
 "Bundle 'davidhalter/jedi-vim'
 
@@ -19,6 +21,10 @@ set t_Co=256
 let g:ctrlp_custom_ignore = {
 \ 'file': '.pyc$'
 \ }
+let g:ctrlp_working_path_mode = ''
+
+" vim-buffergator settings
+let g:buffergator_suppress_keymaps = 1
 
 " jedi-vim settings
 "let g:jedi#popup_on_dot = 0
@@ -42,7 +48,7 @@ set backspace=eol,start,indent
 "set autochdir
 set incsearch
 set clipboard+=unnamed
-set timeoutlen=150
+set timeoutlen=200
 set wildmenu
 set lazyredraw
 
@@ -65,6 +71,7 @@ set autoindent
 "
 " c = comment
 " e = toggle nerdtree
+" f = toggle buffergator
 " h = toggle hlsearch
 " i = toggle ignorecase
 " n = toggle number
@@ -102,12 +109,16 @@ nmap <Leader>p "*p
 " buffers
 nmap <C-J> :silent bnext<CR>
 nmap <C-K> :silent bprev<CR>
-nmap <C-X> :silent bdelete<CR>
+"nmap <C-X> :silent bdelete<CR>
+nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 
-nmap K <Nop>
+
+"nmap K <Nop>
+nmap K ^
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 map <Leader>e :silent NERDTreeToggle<CR>
+map <Leader>f :silent BuffergatorToggle<CR>
 cmap w!! w !sudo tee %
 
 " experimental stuff that I try out..
@@ -116,4 +127,5 @@ cmap w!! w !sudo tee %
 
 " pre-fill some buffers
 
-let @d="import ipdb; ipdb.set_trace()"
+let @i="import ipdb; ipdb.set_trace()"
+let @d="import pudb; pudb.set_trace()"
