@@ -75,6 +75,7 @@ set autoindent
 " h = toggle hlsearch
 " i = toggle ignorecase
 " n = toggle number
+" r = show register content
 " t = toggle paste
 " w = trim trailing whitespace
 "
@@ -105,6 +106,7 @@ nmap <Leader>h :set invhlsearch<CR>
 nmap <Leader>y "*y
 nmap <Leader>d "*d
 nmap <Leader>p "*p
+nmap <Leader>r :registers<CR>
 
 " buffers
 nmap <C-J> :silent bnext<CR>
