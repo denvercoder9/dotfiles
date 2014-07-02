@@ -58,7 +58,9 @@ colorscheme desert
 
 " tabs and intendation
 
-set textwidth=80
+if &filetype =~ 'python'
+    set textwidth=80
+endif
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -115,8 +117,8 @@ nmap <C-K> :silent bprev<CR>
 nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 
 nmap ' "        " makes use of registers easiert
-nmap < <<       " makes dedenting easier
-nmap > >>       " makes indenting easier
+"nmap < <<       " makes dedenting easier
+"nmap > >>       " makes indenting easier
 nmap K ^
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
