@@ -102,7 +102,7 @@ bindkey \^U backward-kill-line
 #setopt extendedglob
 
 #setopt appendhistory autocd extendedglob nomatch
-setopt no_share_history
+#setopt no_share_history
 setopt hist_find_no_dups
 
 # treat jobs like bash do
@@ -124,6 +124,7 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pyc'
 
 autoload zmv
 
+setopt AUTO_PUSHD
 alias p='pushd .'
 alias o='popd'
 #alias -s py=vim
