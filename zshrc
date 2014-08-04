@@ -2,7 +2,7 @@
 #
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=(git git-flow)
 source $ZSH/oh-my-zsh.sh
 
 # my own stuff
@@ -61,6 +61,10 @@ fi
 if [[ $(uname) == 'Darwin' ]]; then
     export CLICOLOR_FORCE=1
     alias ls='ls -G'
+fi
+
+if [[ $(uname) == 'Darwin' ]]; then
+    alias text='open -a textedit'
 fi
 
 if [ -e ~/.pythonstartup ]; then
@@ -151,4 +155,20 @@ if [[ -e ~/.pythonstartup ]]; then
     export PYTHONSTARTUP=~/.pythonstartup
 fi
 
-export PYTHONPATH=/Users/fredrik/projects
+PROJECTS=/Users/fredrik/projects
+export PYTHONPATH=$PROJECTS/checkout_api/libs
+#export PYTHONPATH=$PYTHONPATH:$PROJECTS/checkout_api:$PROJECTS/collins
+export API=http://localhost:9000
+export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts
+
+alias py.test='py.test -s -l --tb=short'
+
+alias vim='vi -c "cd $(pwd)"'
+
+
+
+postjson() {
+    curl -X POST $1 -H "Content-Type:application/json" -d $2
+}
+alias json='python -m json.tool'
+alias fail='failed_messages.py --user admin --passwd 12Mode ant-infra2.n.collins.kg'

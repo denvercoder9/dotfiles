@@ -58,7 +58,9 @@ colorscheme desert
 
 " tabs and intendation
 
-set textwidth=80
+if &filetype =~ 'python'
+    set textwidth=80
+endif
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -75,6 +77,7 @@ set autoindent
 " h = toggle hlsearch
 " i = toggle ignorecase
 " n = toggle number
+" r = show register content
 " t = toggle paste
 " w = trim trailing whitespace
 "
@@ -105,6 +108,7 @@ nmap <Leader>h :set invhlsearch<CR>
 nmap <Leader>y "*y
 nmap <Leader>d "*d
 nmap <Leader>p "*p
+nmap <Leader>r :registers<CR>
 
 " buffers
 nmap <C-J> :silent bnext<CR>
@@ -113,8 +117,8 @@ nmap <C-K> :silent bprev<CR>
 nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 
 nmap ' "        " makes use of registers easiert
-nmap < <<       " makes dedenting easier
-nmap > >>       " makes indenting easier
+"nmap < <<       " makes dedenting easier
+"nmap > >>       " makes indenting easier
 nmap K ^
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
