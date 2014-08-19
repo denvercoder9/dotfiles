@@ -136,5 +136,3 @@ cmap w!! w !sudo tee %
 
 let @i="import ipdb; ipdb.set_trace()"
 let @d="import pudb; pudb.set_trace()"
-
-cd ~/projects

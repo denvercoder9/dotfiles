@@ -106,7 +106,7 @@ bindkey \^U backward-kill-line
 #setopt extendedglob
 
 #setopt appendhistory autocd extendedglob nomatch
-setopt no_share_history
+#setopt no_share_history
 setopt hist_find_no_dups
 
 # treat jobs like bash do
