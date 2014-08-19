@@ -78,6 +78,7 @@ set autoindent
 " i = toggle ignorecase
 " n = toggle number
 " r = show register content
+" s = windo toggle scrollbind
 " t = toggle paste
 " w = trim trailing whitespace
 "
@@ -124,6 +125,7 @@ imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 map <Leader>e :silent NERDTreeToggle<CR>
 map <Leader>f :silent BuffergatorToggle<CR>
+map <Leader>s :silent windo set scrollbind!<CR>
 cmap w!! w !sudo tee %
 
 " experimental stuff that I try out..
