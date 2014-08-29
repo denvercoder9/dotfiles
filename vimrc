@@ -10,8 +10,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'moll/vim-bbye'
-
-"Bundle 'davidhalter/jedi-vim'
+Bundle 'davidhalter/jedi-vim'
 
 " vim-powerline settings
 set laststatus=2   " Always show the statusline
@@ -26,11 +25,16 @@ let g:ctrlp_working_path_mode = ''
 " vim-buffergator settings
 let g:buffergator_suppress_keymaps = 1
 
-" jedi-vim settings
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#popup_select_first = 0
-"let g:jedi#use_tabs_not_buffers = 0
-"autocmd FileType python setlocal completeopt-=preview
+" jedi stuff
+
+"let g:jedi#documentation_command="<leader>jd"
+let g:jedi#rename_command="<leader>jr"
+let g:jedi#usages_command="<leader>ju"
+let g:jedi#popup_on_dot=0
+let g:jedi#use_tabs_not_buffers = 0
+autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
+
+
 
 " language awareness
 syntax on
@@ -55,6 +59,9 @@ set lazyredraw
 " colors
 
 colorscheme desert
+" no pink completion menu please!
+highlight Pmenu ctermbg=238 gui=bold
+
 
 " tabs and intendation
 
@@ -76,10 +83,12 @@ set autoindent
 " f = toggle buffergator
 " h = toggle hlsearch
 " i = toggle ignorecase
+" j = jedi prefix
 " n = toggle number
 " r = show register content
 " s = windo toggle scrollbind
 " t = toggle paste
+" v = resource .vimrc
 " w = trim trailing whitespace
 "
 " -------------
@@ -120,13 +129,15 @@ nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 nmap ' "        " makes use of registers easiert
 "nmap < <<       " makes dedenting easier
 "nmap > >>       " makes indenting easier
-nmap K ^
+"nmap K <Nop>
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 map <Leader>e :silent NERDTreeToggle<CR>
 map <Leader>f :silent BuffergatorToggle<CR>
 map <Leader>s :silent windo set scrollbind!<CR>
 cmap w!! w !sudo tee %
+
+map <Leader>v :source $MYVIMRC<CR>
 
 " experimental stuff that I try out..
 "au BufWinLeave * silent! mkview
