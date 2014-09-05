@@ -162,7 +162,7 @@ export PYTHONPATH=$PROJECTS/checkout_api/libs
 export API=http://localhost:9000
 export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts
 
-alias py.test='py.test -s -l --tb=short'
+alias py.test='py.test -s -l --tb=short --strict'
 
 alias vim='vi -c "cd $(pwd)"'
 
