@@ -11,6 +11,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'moll/vim-bbye'
 Bundle 'davidhalter/jedi-vim'
+Bundle 'tpope/vim-surround'
 
 " vim-powerline settings
 set laststatus=2   " Always show the statusline
@@ -32,6 +33,7 @@ let g:jedi#rename_command="<leader>jr"
 let g:jedi#usages_command="<leader>ju"
 let g:jedi#popup_on_dot=0
 let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#popup_select_first=1
 autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
 
 
@@ -146,4 +148,18 @@ map <Leader>v :source $MYVIMRC<CR>
 " pre-fill some buffers
 
 let @i="import ipdb; ipdb.set_trace()"
-let @d="import pudb; pudb.set_trace()"
+let @d="import pdb; pdb.set_trace()"
+let @u="import pudb; pudb.set_trace()"
+
+cd ~/Projects/checkout_api
+
+
+" experimental...
+"
+abbr sessoin session
+abbr magicmock MagicMock
+abbr reversation reservation
+iabbr soin sion
+iabbr toin tion
+inoremap soin sion
+inoremap toin tion
