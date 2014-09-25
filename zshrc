@@ -29,6 +29,7 @@ alias cd.....='cd ../../../..'
 alias less='less -rM'
 alias mplayer='mplayer -really-quiet'
 alias no='yes n'
+alias svi='sudo -E vi'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
@@ -162,7 +163,7 @@ export PYTHONPATH=$PROJECTS/checkout_api/libs
 export API=http://localhost:9000
 export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts
 
-alias py.test='py.test -s -l --tb=short'
+alias py.test='py.test -s -l --tb=short --strict'
 
 alias vim='vi -c "cd $(pwd)"'
 
