@@ -129,7 +129,7 @@ nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 nmap ' "        " makes use of registers easiert
 "nmap < <<       " makes dedenting easier
 "nmap > >>       " makes indenting easier
-"nmap K <Nop>
+nmap K <Nop>
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 map <Leader>e :silent NERDTreeToggle<CR>
@@ -147,3 +147,5 @@ map <Leader>v :source $MYVIMRC<CR>
 
 let @i="import ipdb; ipdb.set_trace()"
 let @d="import pudb; pudb.set_trace()"
+
+cd ~/Documents
