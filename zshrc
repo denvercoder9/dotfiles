@@ -158,19 +158,14 @@ if [[ -e ~/.pythonstartup ]]; then
 fi
 
 PROJECTS=/Users/fredrik/projects
-export PYTHONPATH=$PROJECTS/checkout_api/libs
-#export PYTHONPATH=$PYTHONPATH:$PROJECTS/checkout_api:$PROJECTS/collins
-export API=http://localhost:9000
+export PYTHONPATH=$PROJECTS/checkout_api/libs:$PROJECTS/checkout_api/
 export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts
 
 alias py.test='py.test -s -l --tb=short --strict'
 
-alias vim='vi -c "cd $(pwd)"'
-
-
-
 postjson() {
     curl -X POST $1 -H "Content-Type:application/json" -d $2
 }
-alias json='python -m json.tool'
 alias fail='failed_messages.py --user admin --passwd 12Mode ant-infra2.n.collins.kg'
+
+alias python='python -Wignore'

@@ -10,7 +10,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'moll/vim-bbye'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-surround'
 
 " vim-powerline settings
@@ -21,20 +21,20 @@ set t_Co=256
 let g:ctrlp_custom_ignore = {
 \ 'file': '.pyc$'
 \ }
-let g:ctrlp_working_path_mode = ''
+let g:ctrlp_working_path_mode = 'ra'
 
 " vim-buffergator settings
 let g:buffergator_suppress_keymaps = 1
 
 " jedi stuff
 
-"let g:jedi#documentation_command="<leader>jd"
-let g:jedi#rename_command="<leader>jr"
-let g:jedi#usages_command="<leader>ju"
-let g:jedi#popup_on_dot=0
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_select_first=1
-autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
+""let g:jedi#documentation_command="<leader>jd"
+"let g:jedi#rename_command="<leader>jr"
+"let g:jedi#usages_command="<leader>ju"
+"let g:jedi#popup_on_dot=0
+"let g:jedi#use_tabs_not_buffers = 0
+"let g:jedi#popup_select_first=1
+"autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
 
 
 
@@ -131,7 +131,7 @@ nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 nmap ' "        " makes use of registers easiert
 "nmap < <<       " makes dedenting easier
 "nmap > >>       " makes indenting easier
-"nmap K <Nop>
+nmap K <Nop>
 imap jj <esc>
 nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 map <Leader>e :silent NERDTreeToggle<CR>
@@ -150,8 +150,6 @@ map <Leader>v :source $MYVIMRC<CR>
 let @i="import ipdb; ipdb.set_trace()"
 let @d="import pdb; pdb.set_trace()"
 let @u="import pudb; pudb.set_trace()"
-
-cd ~/Projects/checkout_api
 
 
 " experimental...
