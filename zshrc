@@ -38,6 +38,8 @@ alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 alias gff='git flow feature'
 alias gco-='git checkout -'
 alias gcd='git checkout develop'
+alias gdi='git diff'
+alias glp='git log --patch'
 
 pg() {
     (ps aux | head -n 1) && (ps aux | grep $1)
@@ -159,7 +161,7 @@ fi
 
 PROJECTS=/Users/fredrik/projects
 export PYTHONPATH=$PROJECTS/checkout_api/libs:$PROJECTS/checkout_api/
-export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts
+export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts:$HOME/python/bin
 
 alias py.test='py.test -s -l --tb=short --strict'
 
@@ -169,3 +171,6 @@ postjson() {
 alias fail='failed_messages.py --user admin --passwd 12Mode ant-infra2.n.collins.kg'
 
 alias python='python -Wignore'
+
+alias pbp='pbpaste'
+alias pbc='pbcopy'
