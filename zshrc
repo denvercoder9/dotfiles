@@ -26,10 +26,12 @@ alias cd..='cd ..'
 alias cd...='cd ../..'
 alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
-alias less='less -rM'
+#alias less='less -rM'
+alias less='less -R'
 alias mplayer='mplayer -really-quiet'
 alias no='yes n'
 alias svi='sudo -E vi'
+alias grep='grep --color'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
@@ -163,14 +165,20 @@ PROJECTS=/Users/fredrik/projects
 export PYTHONPATH=$PROJECTS/checkout_api/libs:$PROJECTS/checkout_api/
 export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts:$HOME/python/bin
 
-alias py.test='py.test -s -l --tb=short --strict'
+alias py.test='python -Wignore -m py.test -s -l --tb=short --strict'
 
 postjson() {
     curl -X POST $1 -H "Content-Type:application/json" -d $2
+}
+putjson() {
+    curl -X PUT $1 -H "Content-Type:application/json" -d $2
 }
 alias fail='failed_messages.py --user admin --passwd 12Mode ant-infra2.n.collins.kg'
 
 alias python='python -Wignore'
 
 alias pbp='pbpaste'
+alias pjq='pbpaste | jq'
 alias pbc='pbcopy'
+
+alias redis-cli='rlwrap redis-cli'
