@@ -161,3 +161,5 @@ iabbr soin sion
 iabbr toin tion
 inoremap soin sion
 inoremap toin tion
+
+cd ~/Documents

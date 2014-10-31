@@ -185,3 +185,9 @@ alias pjq='pbpaste | jq'
 alias pbc='pbcopy'
 
 alias redis-cli='rlwrap redis-cli'
+
+gitx() {
+    /Applications/GitX.app/Contents/MacOS/GitX $1 &
+}
+
+export PATH=$PATH:$HOME/Library/Haskell/bin
