@@ -38,6 +38,9 @@ alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/download
 # git stuff
 
 alias gff='git flow feature'
+alias gfr='git flow release'
+alias gfh='git flow hotfix'
+
 alias gco-='git checkout -'
 alias gcd='git checkout develop'
 alias gdi='git diff'
