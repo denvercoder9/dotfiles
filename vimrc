@@ -10,7 +10,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'moll/vim-bbye'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-surround'
 
 " vim-powerline settings
@@ -21,20 +21,20 @@ set t_Co=256
 let g:ctrlp_custom_ignore = {
 \ 'file': '.pyc$'
 \ }
-let g:ctrlp_working_path_mode = ''
+let g:ctrlp_working_path_mode = 'ra'
 
 " vim-buffergator settings
 let g:buffergator_suppress_keymaps = 1
 
 " jedi stuff
 
-"let g:jedi#documentation_command="<leader>jd"
-let g:jedi#rename_command="<leader>jr"
-let g:jedi#usages_command="<leader>ju"
-let g:jedi#popup_on_dot=0
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#popup_select_first=1
-autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
+""let g:jedi#documentation_command="<leader>jd"
+"let g:jedi#rename_command="<leader>jr"
+"let g:jedi#usages_command="<leader>ju"
+"let g:jedi#popup_on_dot=0
+"let g:jedi#use_tabs_not_buffers = 0
+"let g:jedi#popup_select_first=1
+"autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
 
 
 

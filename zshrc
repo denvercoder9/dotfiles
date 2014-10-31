@@ -26,18 +26,25 @@ alias cd..='cd ..'
 alias cd...='cd ../..'
 alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
-alias less='less -rM'
+#alias less='less -rM'
+alias less='less -R'
 alias mplayer='mplayer -really-quiet'
 alias no='yes n'
 alias svi='sudo -E vi'
+alias grep='grep --color'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
 # git stuff
 
 alias gff='git flow feature'
+alias gfr='git flow release'
+alias gfh='git flow hotfix'
+
 alias gco-='git checkout -'
 alias gcd='git checkout develop'
+alias gdi='git diff'
+alias glp='git log --patch'
 
 pg() {
     (ps aux | head -n 1) && (ps aux | grep $1)
@@ -158,19 +165,23 @@ if [[ -e ~/.pythonstartup ]]; then
 fi
 
 PROJECTS=/Users/fredrik/projects
-export PYTHONPATH=$PROJECTS/checkout_api/libs
-#export PYTHONPATH=$PYTHONPATH:$PROJECTS/checkout_api:$PROJECTS/collins
-export API=http://localhost:9000
-export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts
+export PYTHONPATH=$PROJECTS/checkout_api/libs:$PROJECTS/checkout_api/
+export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts:$HOME/python/bin
 
-alias py.test='py.test -s -l --tb=short --strict'
-
-alias vim='vi -c "cd $(pwd)"'
-
-
+alias py.test='python -Wignore -m py.test -s -l --tb=short --strict'
 
 postjson() {
     curl -X POST $1 -H "Content-Type:application/json" -d $2
 }
-alias json='python -m json.tool'
+putjson() {
+    curl -X PUT $1 -H "Content-Type:application/json" -d $2
+}
 alias fail='failed_messages.py --user admin --passwd 12Mode ant-infra2.n.collins.kg'
+
+alias python='python -Wignore'
+
+alias pbp='pbpaste'
+alias pjq='pbpaste | jq'
+alias pbc='pbcopy'
+
+alias redis-cli='rlwrap redis-cli'

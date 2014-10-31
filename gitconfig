@@ -7,3 +7,7 @@
 	excludesfile = .gitignore
 [color]
 	ui = true
+	l = log --patch
+[alias]
+	grep = pss
+	pss = !pss
