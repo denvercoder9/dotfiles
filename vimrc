@@ -128,7 +128,6 @@ nmap <C-K> :silent bprev<CR>
 "nmap <C-X> :silent bdelete<CR>
 nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 
-nmap ' "        " makes use of registers easiert
 "nmap < <<       " makes dedenting easier
 "nmap > >>       " makes indenting easier
 nmap K <Nop>
