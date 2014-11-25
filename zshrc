@@ -60,6 +60,9 @@ lat() {
     ls -lt | tail -n +2 | head -n $NO
 }
 
+# TODO
+# if [[ $IS_MAC -eq 1 ]]; then
+
 # Only if in an X environment
 if [[ $(uname) != "Darwin" && -n $DISPLAY ]]; then
     setxkbmap se
@@ -138,7 +141,6 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pyc'
 autoload zmv
 
 setopt AUTO_PUSHD
-alias p='pushd .'
 alias o='popd'
 #alias -s py=vim
 alias psy='pss --py'

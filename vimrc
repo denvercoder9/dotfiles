@@ -11,7 +11,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'moll/vim-bbye'
 "Bundle 'davidhalter/jedi-vim'
-Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-surround'
 
 " vim-powerline settings
 set laststatus=2   " Always show the statusline
