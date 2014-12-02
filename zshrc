@@ -188,8 +188,12 @@ alias pbc='pbcopy'
 
 alias redis-cli='rlwrap redis-cli'
 
-gitx() {
-    /Applications/GitX.app/Contents/MacOS/GitX $1 &
-}
-
 export PATH=$PATH:$HOME/Library/Haskell/bin
+
+alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar clojure.main)'
+
+
+flow-stat() {
+    git --no-pager diff develop..HEAD --numstat | \
+    awk '{ a+=$1; b+=$2 } END {print "Added:\t\t" a "\n" "Deleted:\t" b}'
+}
