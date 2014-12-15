@@ -2,7 +2,7 @@
 #
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(git git-flow)
+plugins=(git git-flow autojump)
 source $ZSH/oh-my-zsh.sh
 
 # my own stuff
@@ -196,4 +196,21 @@ alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar 
 flow-stat() {
     git --no-pager diff develop..HEAD --numstat | \
     awk '{ a+=$1; b+=$2 } END {print "Added:\t\t" a "\n" "Deleted:\t" b}'
+}
+
+statistics() {
+    num_files=$(find . -type f -regex '.*\.py$' | wc -l)
+    num_lines=$(find . -type f -regex '.*.py$' | xargs -I {} wc -l {} | awk '{ a+=$1 } END { print a }')
+    echo "Files: $num_files"
+    echo "Lines: $num_lines"
+}
+
+grepv() {
+    cmd="grep -v $1"
+    shift
+    for arg in $@; do
+        cmd="$cmd | grep -v $1"
+        shift
+    done
+    eval $cmd
 }
