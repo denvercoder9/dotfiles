@@ -178,7 +178,7 @@ postjson() {
 putjson() {
     curl -X PUT $1 -H "Content-Type:application/json" -d $2
 }
-alias fail='failed_messages.py --user admin --passwd 12Mode ant-infra2.n.collins.kg'
+alias fail='failed_messages.py ~/failed_messages.yml'
 
 alias python='python -Wignore'
 
@@ -214,3 +214,5 @@ grepv() {
     done
     eval $cmd
 }
+
+alias git='/usr/local/bin/git'
