@@ -214,3 +214,7 @@ grepv() {
     done
     eval $cmd
 }
+
+export PATH=$PATH:/usr/local/Cellar/ranger/1.6.1/bin
+
+alias git='/usr/local/bin/git'
