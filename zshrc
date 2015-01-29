@@ -218,3 +218,7 @@ grepv() {
 export PATH=$PATH:/usr/local/Cellar/ranger/1.6.1/bin
 
 alias git='/usr/local/bin/git'
+
+export LANG=en_US.UTF-8
+
+alias listening-ports='lsof -i -P | grep "LISTEN"'
