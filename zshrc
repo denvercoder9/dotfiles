@@ -47,7 +47,7 @@ alias gdi='git diff'
 alias glp='git log --patch'
 
 pg() {
-    (ps aux | head -n 1) && (ps aux | grep $1)
+    (ps aux | head -n 1) && (ps aux | grep -i $1)
 }
 
 color() {
@@ -87,7 +87,7 @@ fi
 AUTOJUMP_PATH=/usr/share/autojump/autojump.sh
 if [ -e $AUTOJUMP_PATH ]; then
     . $AUTOJUMP_PATH
-else 
+else
     AUTOJUMP_PATH=/usr/local/etc/autojump.sh
     if [ -e $AUTOJUMP_PATH ]; then
         . $AUTOJUMP_PATH
@@ -156,8 +156,6 @@ if [ -e /usr/bin/colordiff ]; then
     alias diff=colordiff
 fi
 
-workon dev
-
 export SERVER=46.163.115.107
 
 eval "$(pip completion --zsh)"
@@ -166,9 +164,9 @@ if [[ -e ~/.pythonstartup ]]; then
     export PYTHONSTARTUP=~/.pythonstartup
 fi
 
-PROJECTS=/Users/fredrik/projects
-export PYTHONPATH=$PROJECTS/checkout_api/libs:$PROJECTS/checkout_api/
-export PATH=$PATH:$PROJECTS/checkout_api/bin:$HOME/scripts:$HOME/python/bin
+PROJECTS=~/projekt
+export PYTHONPATH=$PROJECTS/collins/checkout_api/libs:$PROJECTS/collins/checkout_api/
+export PATH=$PATH:$PROJECTS/collins/checkout_api/bin:$HOME/scripts:$HOME/python/bin
 
 alias py.test='python -Wignore -m py.test -s -l --tb=short --strict'
 
@@ -178,7 +176,7 @@ postjson() {
 putjson() {
     curl -X PUT $1 -H "Content-Type:application/json" -d $2
 }
-alias fail='failed_messages.py ~/failed_messages.yml'
+alias fail='failed_messages.py ~/projekt/collins/env/failed_messages.yml'
 
 alias python='python -Wignore'
 
@@ -215,10 +213,26 @@ grepv() {
     eval $cmd
 }
 
-export PATH=$PATH:/usr/local/Cellar/ranger/1.6.1/bin
-
 alias git='/usr/local/bin/git'
 
 export LANG=en_US.UTF-8
 
 alias listening-ports='lsof -i -P | grep "LISTEN"'
+
+alias compile-ssh-config='rm ~/.ssh/config && cat ~/.ssh/*.conf >> ~/.ssh/config'
+
+if [ -e ~/.env ]; then
+    workon $(cat ~/.env)
+fi
+
+if [ -e ~/.tokens ]; then
+    . ~/.tokens
+fi
+
+export PATH="$HOME/.rvm/bin:$HOME/.rvm/gems/ruby-2.2.0/bin":$PATH
+
+alias be='bundle exec'
+
+service() {
+  launchctl $2 /usr/local/opt/$1/homebrew.mxcl.$1.plist
+}
