@@ -67,13 +67,24 @@ highlight Pmenu ctermbg=238 gui=bold
 
 " tabs and intendation
 
-if &filetype =~ 'python'
-    set textwidth=80
-endif
-set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+if &filetype =~ 'python'
+    set textwidth=80
+    "set tabstop=4
+    "set shiftwidth=4
+    "set softtabstop=4
+endif
+
+if &filetype =~ 'ruby'
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+endif
+
+set expandtab
 set autoindent
 
 "  -------------
