@@ -143,8 +143,8 @@ autoload zmv
 setopt AUTO_PUSHD
 alias o='popd'
 #alias -s py=vim
+alias pss='pss --nobinary'
 alias psy='pss --py'
-alias node="env NODE_NO_READLINE=1 rlwrap node"
 alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
 alias pyclean='find . -regex ".*\.pyc$" -print -delete'
 
@@ -155,8 +155,6 @@ fi
 if [ -e /usr/bin/colordiff ]; then
     alias diff=colordiff
 fi
-
-export SERVER=46.163.115.107
 
 eval "$(pip completion --zsh)"
 
@@ -176,7 +174,6 @@ postjson() {
 putjson() {
     curl -X PUT $1 -H "Content-Type:application/json" -d $2
 }
-alias fail='failed_messages.py ~/projekt/collins/env/failed_messages.yml'
 
 alias python='python -Wignore'
 
@@ -184,12 +181,7 @@ alias pbp='pbpaste'
 alias pjq='pbpaste | jq'
 alias pbc='pbcopy'
 
-alias redis-cli='rlwrap redis-cli'
-
 export PATH=$PATH:$HOME/Library/Haskell/bin
-
-alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar clojure.main)'
-
 
 flow-stat() {
     git --no-pager diff develop..HEAD --numstat | \
@@ -231,8 +223,24 @@ fi
 
 export PATH="$HOME/.rvm/bin:$HOME/.rvm/gems/ruby-2.2.0/bin":$PATH
 
-alias be='bundle exec'
+alias sudo='sudo '  # If the last character of the alias value is a space or tab character,
+                    # then the next command word following the alias is also checked for alias expansion.
 
-service() {
-  launchctl $2 /usr/local/opt/$1/homebrew.mxcl.$1.plist
-}
+# this is because
+# rm foo 2>/dev/null works when foo is not present, but
+# rm foo* 2>/dev/null 
+# doesn't... 
+setopt null_glob
+
+alias textedit='open -a /Applications/TextEdit.app'
+
+alias rabbitmqctl=/usr/local/Cellar/rabbitmq/3.5.2/sbin/rabbitmqctl
+
+alias pip-upgrade-all='pip list --outdated | tail +1 | awk '"'"'{ system("pip install -U "$1) }'"'"''
+# rlwrap for the win
+
+alias redis-cli='rlwrap redis-cli'
+alias racket='rlwrap racket'
+alias lisp='rlwrap sbcl'
+alias node="env NODE_NO_READLINE=1 rlwrap node"
+alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar clojure.main)'

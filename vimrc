@@ -22,6 +22,8 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '.pyc$'
 \ }
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 " vim-buffergator settings
 let g:buffergator_suppress_keymaps = 1
@@ -67,25 +69,16 @@ highlight Pmenu ctermbg=238 gui=bold
 
 " tabs and intendation
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-
-if &filetype =~ 'python'
-    set textwidth=80
-    "set tabstop=4
-    "set shiftwidth=4
-    "set softtabstop=4
-endif
-
-if &filetype =~ 'ruby'
-    set tabstop=2
-    set shiftwidth=2
-    set softtabstop=2
-endif
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
 
 set expandtab
 set autoindent
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 "  -------------
 "
@@ -97,6 +90,7 @@ set autoindent
 " h = toggle hlsearch
 " i = toggle ignorecase
 " j = jedi prefix
+" k = split at 80 chars
 " n = toggle number
 " r = show register content
 " s = windo toggle scrollbind
@@ -111,7 +105,8 @@ set autoindent
 let mapleader = ","
 
 " external commands
-vmap S :!sort -u<CR>
+"vmap S :!sort -u<CR>
+vmap S :!sort -f<CR>
 
 " c = comment
 nmap <Leader>c <Esc>:s/^/#/<CR>
@@ -161,6 +156,11 @@ let @i="import ipdb; ipdb.set_trace()"
 let @d="import pdb; pdb.set_trace()"
 let @u="import pudb; pudb.set_trace()"
 
+" the underline trick
+
+let @u="yypVr-"      " underline line
+let @k="080lbi\rjj"  " shorten line to 80 chars without breaking words
+
 
 " experimental...
 "
@@ -171,3 +171,10 @@ iabbr soin sion
 iabbr toin tion
 inoremap soin sion
 inoremap toin tion
+
+
+"utocmd FileType python set tabstop=4|set shiftwidth=4
+"autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
+"au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+
+autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
