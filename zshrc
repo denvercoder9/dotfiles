@@ -163,10 +163,9 @@ if [[ -e ~/.pythonstartup ]]; then
 fi
 
 PROJECTS=~/projekt
-export PYTHONPATH=$PROJECTS/collins/checkout_api/libs:$PROJECTS/collins/checkout_api/
 export PATH=$PATH:$PROJECTS/collins/checkout_api/bin:$HOME/scripts:$HOME/python/bin
 
-alias py.test='python -Wignore -m py.test -s -l --tb=short --strict'
+alias py.test='python -m py.test -s -l --tb=short --strict'
 
 postjson() {
     curl -X POST $1 -H "Content-Type:application/json" -d $2
@@ -174,8 +173,6 @@ postjson() {
 putjson() {
     curl -X PUT $1 -H "Content-Type:application/json" -d $2
 }
-
-alias python='python -Wignore'
 
 alias pbp='pbpaste'
 alias pjq='pbpaste | jq'
