@@ -101,11 +101,6 @@ if [ -e $VIRTUALENV_PATH ]; then
     . $VIRTUALENV_PATH
 fi
 
-if [ -e $HOME/scripts ]; then
-    export PATH=$PATH:$HOME/scripts
-    export PYTHONPATH=$PYTHONPATH:$HOME/scripts
-fi
-
 unsetopt beep notify
 
 bindkey \^W backward-kill-word
@@ -163,7 +158,6 @@ if [[ -e ~/.pythonstartup ]]; then
 fi
 
 PROJECTS=~/projekt
-export PATH=$PATH:$PROJECTS/collins/checkout_api/bin:$HOME/scripts:$HOME/python/bin
 
 alias py.test='python -m py.test -s -l --tb=short --strict'
 
@@ -241,3 +235,5 @@ alias racket='rlwrap racket'
 alias lisp='rlwrap sbcl'
 alias node="env NODE_NO_READLINE=1 rlwrap node"
 alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar clojure.main)'
+
+export PATH=$PATH:$HOME/code/python/bin
