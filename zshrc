@@ -141,7 +141,6 @@ alias o='popd'
 alias pss='pss --nobinary'
 alias psy='pss --py'
 alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
-alias pyclean='find . -regex ".*\.pyc$" -print -delete'
 
 if [ -e /usr/bin/md5sum ]; then
     alias md5='md5sum'
@@ -195,8 +194,6 @@ grepv() {
     done
     eval $cmd
 }
-
-alias git='/usr/local/bin/git'
 
 export LANG=en_US.UTF-8
 
