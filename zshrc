@@ -281,3 +281,6 @@ alias reload='source ~/.zshrc'
 tailf() {
     while ! tail -f $1 2>/dev/null; do sleep 1; done
 }
+
+alias -g G='| grep'
+alias -g W='| wc -l'
