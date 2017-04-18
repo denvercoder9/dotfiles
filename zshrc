@@ -28,7 +28,7 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 #alias less='less -rM'
 alias less='less -R'
-alias mplayer='mplayer -really-quiet'
+#alias mplayer='mplayer -really-quiet'
 alias no='yes n'
 alias svi='sudo -E vi'
 alias grep='grep --color'
@@ -42,9 +42,16 @@ alias gfr='git flow release'
 alias gfh='git flow hotfix'
 
 alias gco-='git checkout -'
-alias gcd='git checkout develop'
-alias gdi='git diff'
 alias glp='git log --patch'
+alias gls='git log --stat'
+alias gpp='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+
+alias gss='git stash show'
+alias gssp='git stash show -p'
+alias gsd='git stash drop'
+alias gsp='git stash pop'
+alias gsl='git stash list'
+
 
 pg() {
     (ps aux | head -n 1) && (ps aux | grep -i $1)
@@ -54,11 +61,6 @@ color() {
     grep -E "$1|" --color=always $2
 }
 
-lat() {
-    if [[ -z $1 ]]; then NO=10
-    else NO=$1 fi
-    ls -lt | tail -n +2 | head -n $NO
-}
 
 # TODO
 # if [[ $IS_MAC -eq 1 ]]; then
@@ -94,7 +96,7 @@ else
     fi
 fi
 
-VIRTUALENV_PATH=/usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENV_PATH=/usr/local/bin/virtualenvwrapper.sh
 if [ -e $VIRTUALENV_PATH ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Projects
@@ -138,8 +140,7 @@ autoload zmv
 setopt AUTO_PUSHD
 alias o='popd'
 #alias -s py=vim
-alias pss='pss --nobinary'
-alias psy='pss --py'
+#alias pss='pss --nobinary'
 alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
 
 if [ -e /usr/bin/md5sum ]; then
@@ -150,7 +151,7 @@ if [ -e /usr/bin/colordiff ]; then
     alias diff=colordiff
 fi
 
-eval "$(pip completion --zsh)"
+#eval "$(pip completion --zsh)"
 
 if [[ -e ~/.pythonstartup ]]; then
     export PYTHONSTARTUP=~/.pythonstartup
@@ -170,8 +171,6 @@ putjson() {
 alias pbp='pbpaste'
 alias pjq='pbpaste | jq'
 alias pbc='pbcopy'
-
-export PATH=$PATH:$HOME/Library/Haskell/bin
 
 flow-stat() {
     git --no-pager diff develop..HEAD --numstat | \
@@ -209,7 +208,7 @@ if [ -e ~/.tokens ]; then
     . ~/.tokens
 fi
 
-export PATH="$HOME/.rvm/bin:$HOME/.rvm/gems/ruby-2.2.0/bin":$PATH
+
 
 alias sudo='sudo '  # If the last character of the alias value is a space or tab character,
                     # then the next command word following the alias is also checked for alias expansion.
@@ -222,8 +221,6 @@ setopt null_glob
 
 alias textedit='open -a /Applications/TextEdit.app'
 
-alias rabbitmqctl=/usr/local/Cellar/rabbitmq/3.5.2/sbin/rabbitmqctl
-
 alias pip-upgrade-all='pip list --outdated | tail +1 | awk '"'"'{ system("pip install -U "$1) }'"'"''
 # rlwrap for the win
 
@@ -233,4 +230,54 @@ alias lisp='rlwrap sbcl'
 alias node="env NODE_NO_READLINE=1 rlwrap node"
 alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar clojure.main)'
 
+alias wetter='curl http://wttr.in/Hamburg'
+
+
+alias intra='pbpaste | intranet.py'
+
+
+# pyenv
+eval "$(pyenv init -)"
+
+
+alias gitx='open -a /usr/local/Caskroom/rowanj-gitx/0.15.1964/GitX.app'
+alias gx='gitx .'
+
+
+
+lat() {
+    if [[ -z $1 ]]; then NO=10
+    else NO=$1 fi
+    ls -lt | tail -n +2 | head -n $NO
+}
+
 export PATH=$PATH:$HOME/code/python/bin
+export PATH="$HOME/.rvm/bin:$HOME/.rvm/gems/ruby-2.2.0/bin":$PATH
+export PATH=$PATH:$HOME/Library/Haskell/bin
+export PATH=$PATH:/usr/local/Cellar/rabbitmq/3.6.4/sbin
+
+# just for now...
+alias startpostgres='/usr/local/bin/postmaster -D /usr/local/var/postgres &'
+
+alias dirsizes='find . -type d -maxdepth 1 -exec sh -c "du -h {} | tail -n 1" \;'
+
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+alias deleteempty='find . -empty -print -delete'
+
+function dirwise() {
+    for d in `find . -type d -maxdepth 1`; do
+        (cd $d && pwd)
+    done
+}
+
+export HOMEBREW_LOGS=/usr/local/var/log/
+
+alias dir='\ls -d */'
+alias lwcl='ls -l | wc -l'
+
+alias reload='source ~/.zshrc'
+
+tailf() {
+    while ! tail -f $1 2>/dev/null; do sleep 1; done
+}

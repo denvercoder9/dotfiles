@@ -6,7 +6,7 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-flake8'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-powerline' 
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'jeetsukumaran/vim-buffergator'
 Bundle 'moll/vim-bbye'
@@ -47,7 +47,7 @@ filetype indent on
 
 set ruler               " display ruler at the bottom
 set encoding=utf8       " default encoding utf-8
-set vb t_vb=            " turn off the annoying bell and flash 
+set vb t_vb=            " turn off the annoying bell and flash
 set nu                  " set row numbering on
 set ignorecase
 set hidden              " hidde buffers instead of closing them
@@ -155,6 +155,7 @@ map <Leader>v :source $MYVIMRC<CR>
 let @i="import ipdb; ipdb.set_trace()"
 let @d="import pdb; pdb.set_trace()"
 let @u="import pudb; pudb.set_trace()"
+let @b="require 'byebug'; byebug"
 
 " the underline trick
 
@@ -178,3 +179,4 @@ inoremap toin tion
 "au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
+autocmd FileType javascript set tabstop=2|set shiftwidth=2|set softtabstop=2

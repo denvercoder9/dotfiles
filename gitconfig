@@ -11,3 +11,4 @@
 [alias]
 	grep = pss
 	pss = !pss
+	difff = icdiff --extcmd=icdiff
