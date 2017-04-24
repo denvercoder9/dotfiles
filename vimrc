@@ -1,21 +1,18 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'vim-flake8'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'jeetsukumaran/vim-buffergator'
-Bundle 'moll/vim-bbye'
-"Bundle 'davidhalter/jedi-vim'
-"Bundle 'tpope/vim-surround'
 
-" vim-powerline settings
+call plug#begin('~/.vim/plugged')
+Plug 'vim-flake8'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'moll/vim-bbye'
+Plug 'vim-airline/vim-airline'
+Plug 'kien/ctrlp.vim'
+Plug 'jeetsukumaran/vim-buffergator'
+call plug#end()
+
+" always show airline
 set laststatus=2   " Always show the statusline
-set t_Co=256
 
 " ctrlp.vim settings
 let g:ctrlp_custom_ignore = {
@@ -27,18 +24,6 @@ let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 " vim-buffergator settings
 let g:buffergator_suppress_keymaps = 1
-
-" jedi stuff
-
-""let g:jedi#documentation_command="<leader>jd"
-"let g:jedi#rename_command="<leader>jr"
-"let g:jedi#usages_command="<leader>ju"
-"let g:jedi#popup_on_dot=0
-"let g:jedi#use_tabs_not_buffers = 0
-"let g:jedi#popup_select_first=1
-"autocmd FileType python setlocal completeopt-=preview   " get rid of stupid doc window
-
-
 
 " language awareness
 syntax on
