@@ -52,6 +52,7 @@ alias gsd='git stash drop'
 alias gsp='git stash pop'
 alias gsl='git stash list'
 
+export PATH=/usr/local/bin:$PATH:~/bin:$HOME/code/python/bin
 
 pg() {
     (ps aux | head -n 1) && (ps aux | grep -i $1)
@@ -60,7 +61,6 @@ pg() {
 color() {
     grep -E "$1|" --color=always $2
 }
-
 
 # TODO
 # if [[ $IS_MAC -eq 1 ]]; then
@@ -101,6 +101,7 @@ if [ -e $VIRTUALENV_PATH ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Projects
     . $VIRTUALENV_PATH
+    workon dev
 fi
 
 unsetopt beep notify
@@ -139,8 +140,6 @@ autoload zmv
 
 setopt AUTO_PUSHD
 alias o='popd'
-#alias -s py=vim
-#alias pss='pss --nobinary'
 alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
 
 if [ -e /usr/bin/md5sum ]; then
@@ -200,16 +199,6 @@ alias listening-ports='lsof -i -P | grep "LISTEN"'
 
 alias compile-ssh-config='rm ~/.ssh/config && cat ~/.ssh/*.conf >> ~/.ssh/config'
 
-if [ -e ~/.env ]; then
-    workon $(cat ~/.env)
-fi
-
-if [ -e ~/.tokens ]; then
-    . ~/.tokens
-fi
-
-
-
 alias sudo='sudo '  # If the last character of the alias value is a space or tab character,
                     # then the next command word following the alias is also checked for alias expansion.
 
@@ -235,15 +224,7 @@ alias wetter='curl http://wttr.in/Hamburg'
 
 alias intra='pbpaste | intranet.py'
 
-
-# pyenv
-eval "$(pyenv init -)"
-
-
-alias gitx='open -a /usr/local/Caskroom/rowanj-gitx/0.15.1964/GitX.app'
 alias gx='gitx .'
-
-
 
 lat() {
     if [[ -z $1 ]]; then NO=10
@@ -251,17 +232,10 @@ lat() {
     ls -lt | tail -n +2 | head -n $NO
 }
 
-export PATH=$PATH:$HOME/code/python/bin
-export PATH="$HOME/.rvm/bin:$HOME/.rvm/gems/ruby-2.2.0/bin":$PATH
-export PATH=$PATH:$HOME/Library/Haskell/bin
-export PATH=$PATH:/usr/local/Cellar/rabbitmq/3.6.4/sbin
-
 # just for now...
 alias startpostgres='/usr/local/bin/postmaster -D /usr/local/var/postgres &'
 
 alias dirsizes='find . -type d -maxdepth 1 -exec sh -c "du -h {} | tail -n 1" \;'
-
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 alias deleteempty='find . -empty -print -delete'
 
