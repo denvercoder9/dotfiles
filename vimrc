@@ -19,7 +19,8 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '.pyc$'
 \ }
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_cmd = 'CtrlP'
+
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 " vim-buffergator settings
@@ -54,16 +55,14 @@ highlight Pmenu ctermbg=238 gui=bold
 
 " tabs and intendation
 
-" set tabstop=4
-" set shiftwidth=4
-" set softtabstop=4
-
 set expandtab
 set autoindent
 
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+"set cursorline
 
 "  -------------
 "
@@ -148,6 +147,11 @@ let @u="yypVr-"      " underline line
 let @k="080lbi\rjj"  " shorten line to 80 chars without breaking words
 
 
+
+nmap <Leader>b :CtrlPBuffer<CR>
+nmap <Leader>a :CtrlPMixed<CR>
+
+
 " experimental...
 "
 abbr sessoin session
@@ -159,9 +163,8 @@ inoremap soin sion
 inoremap toin tion
 
 
-"utocmd FileType python set tabstop=4|set shiftwidth=4
-"autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
+autocmd FileType python set tabstop=4|set shiftwidth=4
+autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
 "au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-autocmd FileType ruby set tabstop=2|set shiftwidth=2|set softtabstop=2
 autocmd FileType javascript set tabstop=2|set shiftwidth=2|set softtabstop=2
