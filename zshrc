@@ -41,9 +41,9 @@ alias gff='git flow feature'
 alias gfr='git flow release'
 alias gfh='git flow hotfix'
 
+alias gl='git pull --stat'
 alias gco-='git checkout -'
 alias glp='git log --patch'
-alias gls='git log --stat'
 alias gpp='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 
 alias gss='git stash show'
@@ -51,6 +51,7 @@ alias gssp='git stash show -p'
 alias gsd='git stash drop'
 alias gsp='git stash pop'
 alias gsl='git stash list'
+alias gg='git --no-pager'
 
 export PATH=/usr/local/bin:$PATH:~/bin:$HOME/code/python/bin
 
@@ -258,3 +259,18 @@ tailf() {
 
 alias -g G='| grep'
 alias -g W='| wc -l'
+
+f() {
+    find . -name "*$1*" -print
+}
+fe() { find . -name $1 -print }
+
+alias gcb='git rev-parse --abbrev-ref HEAD'
+
+PATH=$PATH:~/scripts
+
+alias find='noglob find'
+
+e() {
+    pss "$1" -l | xargs -o vi
+}
