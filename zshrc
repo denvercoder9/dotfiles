@@ -271,6 +271,9 @@ PATH=$PATH:~/scripts
 
 alias find='noglob find'
 
-e() {
-    pss "$1" -l | xargs -o vi
-}
+#e() {
+#    pss "$1" -l | xargs -o vi
+#}
+
+alias e='fzf --bind "v:execute(vim {})"'
+alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
