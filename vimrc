@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-Plug 'vim-flake8'
+Plug 'nvie/vim-flake8'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'moll/vim-bbye'
@@ -127,6 +127,9 @@ map <Leader>e :silent NERDTreeToggle<CR>
 map <Leader>f :silent BuffergatorToggle<CR>
 map <Leader>s :silent windo set scrollbind!<CR>
 cmap w!! w !sudo tee %
+
+map ä $
+map å 0
 
 map <Leader>v :source $MYVIMRC<CR>
 
