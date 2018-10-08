@@ -53,7 +53,7 @@ alias gsp='git stash pop'
 alias gsl='git stash list'
 alias gg='git --no-pager'
 
-export PATH=/usr/local/bin:$PATH:~/bin:$HOME/code/python/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
 
 pg() {
     (ps aux | head -n 1) && (ps aux | grep -i $1)
@@ -119,6 +119,7 @@ bindkey \^U backward-kill-line
 #setopt appendhistory autocd extendedglob nomatch
 setopt no_share_history
 setopt hist_find_no_dups
+setopt hist_ignore_space
 
 # treat jobs like bash do
 setopt no_hup
@@ -270,10 +271,38 @@ alias gcb='git rev-parse --abbrev-ref HEAD'
 PATH=$PATH:~/scripts
 
 alias find='noglob find'
+alias zmv='noglob zmv -W'
 
-#e() {
-#    pss "$1" -l | xargs -o vi
-#}
+e() {
+    pss "$1" -l | xargs -o vi
+}
 
 alias e='fzf --bind "v:execute(vim {})"'
 alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+
+
+BACKUP_PATH=$HOME/Dropbox/backup
+alias backup='borg create -v --stats --progress $BACKUP_PATH::backup-{now:%Y-%m-%d} $HOME/Desktop/first\ Project $HOME/documents $HOME/Downloads $HOME/Music $HOME/Pictures $HOME/projekt $HOME/code $HOME/passwd.kdbx'
+alias backup-list='borg list $BACKUP_PATH'
+alias backup-prune='borg prune --keep-last 1 $BACKUP_PATH'
+
+
+alias wifi-connect='networksetup -setairportnetwork en0'
+
+split() {
+    python -c "import sys, itertools as it; print '\n'.join(it.chain.from_iterable(line.split('$1') for line in sys.stdin.readlines()))"
+}
+
+new-mac() {
+    mac=$(python -c "import random; data=hex(random.getrandbits(48))[2:-1]; print ':'.join(map(''.join, zip(*[iter(data.zfill(12))]*2)))")
+    sudo ifconfig en0 ether $mac
+}
+
+wifi() {
+    new-mac
+    wifi-connect $1 $2
+}
+
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
+
+bindkey '^P' up-line-or-search      # make ^P behave exactly like arrow up
