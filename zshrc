@@ -306,3 +306,10 @@ wifi() {
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
 
 bindkey '^P' up-line-or-search      # make ^P behave exactly like arrow up
+
+alias list-timezones='sudo systemsetup -listtimezones'
+
+week() { python -c "from datetime import datetime; print datetime.now().isocalendar()[1]" }
+
+alias date-berlin='TZ=Europe/Berlin date'
+alias date-ny='TZ=US/Eastern date'
