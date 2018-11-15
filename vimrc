@@ -132,6 +132,7 @@ map ä $
 map å 0
 
 map <Leader>v :source $MYVIMRC<CR>
+map <Leader>d :s/,/\r/g<CR>     " split line on ,
 
 " experimental stuff that I try out..
 "au BufWinLeave * silent! mkview
