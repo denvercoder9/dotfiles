@@ -92,25 +92,41 @@ let mapleader = ","
 "vmap S :!sort -u<CR>
 vmap S :!sort -f<CR>
 
-" c = comment
+
+nmap <Leader>a :CtrlPMixed<CR>
+nmap <Leader>b :CtrlPBuffer<CR>
 nmap <Leader>c <Esc>:s/^/#/<CR>
 vmap <Leader>c <Esc>: '<, '>s/^/#/<CR>
-
-" x = erase comment
+nmap <Leader>d "*d
+map <Leader>e :silent NERDTreeToggle<CR>
+map <Leader>f :silent BuffergatorToggle<CR>
+" g
+nmap <Leader>h :set invhlsearch<CR>
+nmap <Leader>i :set invignorecase<CR>
+" j
+" k
+map <Leader>l :s/,/\r/g<CR>     " split line on ,
+" m
+nmap <Leader>n :set invnumber<CR>
+" o
+nmap <Leader>p "*p
+" q
+nmap <Leader>r :registers<CR>
+map <Leader>s :silent windo set scrollbind!<CR>
+nmap <Leader>t :set invpaste<CR>
+map <Leader>u :r!date<CR>
+map <Leader>v :source $MYVIMRC<CR>
+nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
 nmap <Leader>x <Esc>:s/^#//<CR>
 vmap <Leader>x <Esc>: '<, '>s/^#//<CR>
+nmap <Leader>y "*y
+" z
+
+
+
 
 " a couple of options mappings
-nmap <Leader>i :set invignorecase<CR>
-nmap <Leader>n :set invnumber<CR>
-nmap <Leader>t :set invpaste<CR>
-nmap <Leader>h :set invhlsearch<CR>
 
-" registers
-nmap <Leader>y "*y
-nmap <Leader>d "*d
-nmap <Leader>p "*p
-nmap <Leader>r :registers<CR>
 
 " buffers
 nmap <C-J> :silent bnext<CR>
@@ -122,17 +138,11 @@ nmap <C-X> :silent Bdelete<CR>  " upper-case Bdelete works with Bbye
 "nmap > >>       " makes indenting easier
 nmap K <Nop>
 imap jj <esc>
-nmap <Leader>w :%s/\s\+$//g<CR>    " remove trailing whitespace
-map <Leader>e :silent NERDTreeToggle<CR>
-map <Leader>f :silent BuffergatorToggle<CR>
-map <Leader>s :silent windo set scrollbind!<CR>
 cmap w!! w !sudo tee %
 
 map ä $
 map å 0
 
-map <Leader>v :source $MYVIMRC<CR>
-map <Leader>d :s/,/\r/g<CR>     " split line on ,
 
 " experimental stuff that I try out..
 "au BufWinLeave * silent! mkview
@@ -152,8 +162,6 @@ let @k="080lbi\rjj"  " shorten line to 80 chars without breaking words
 
 
 
-nmap <Leader>b :CtrlPBuffer<CR>
-nmap <Leader>a :CtrlPMixed<CR>
 
 
 " experimental...

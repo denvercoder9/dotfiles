@@ -13,7 +13,7 @@ alias l='ls -l'
 alias ll='ls -lA'
 alias L='ls -l | less'
 alias LL='ls -la | less'
-alias lg='ls -l | grep'
+alias lg='ls -l | grep -i'
 alias llg='ls -la | grep'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -52,6 +52,7 @@ alias gsd='git stash drop'
 alias gsp='git stash pop'
 alias gsl='git stash list'
 alias gg='git --no-pager'
+alias gcb='git rev-parse --abbrev-ref HEAD'
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
 
@@ -102,13 +103,12 @@ if [ -e $VIRTUALENV_PATH ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Projects
     . $VIRTUALENV_PATH
-    workon dev
 fi
-
-unsetopt beep notify
 
 bindkey \^W backward-kill-word
 bindkey \^U backward-kill-line
+# bindkey '^P' up-line-or-search      # make ^P behave exactly like arrow up
+bindkey '^P' up-line-or-history
 
 #DISABLE_AUTO_UPDATE='true'
 #CASE_SENSITIVE="true"
@@ -130,7 +130,16 @@ setopt nolistambiguous
 setopt menu_complete
 setopt no_case_glob
 
+setopt auto_pushd
+
+# this is because
+# rm foo 2>/dev/null works when foo is not present, but
+# rm foo* 2>/dev/null
+# doesn't...
+setopt null_glob
+
 unsetopt correct_all
+unsetopt beep notify
 
 export EDITOR=vim
 set -o emacs
@@ -140,7 +149,6 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pyc'
 
 autoload zmv
 
-setopt AUTO_PUSHD
 alias o='popd'
 alias rdesktop="LC_ALL=sv_SE.UTF-8 rdesktop"
 
@@ -157,8 +165,6 @@ fi
 if [[ -e ~/.pythonstartup ]]; then
     export PYTHONSTARTUP=~/.pythonstartup
 fi
-
-PROJECTS=~/projekt
 
 alias py.test='python -m py.test -s -l --tb=short --strict'
 
@@ -204,11 +210,6 @@ alias compile-ssh-config='rm ~/.ssh/config && cat ~/.ssh/*.conf >> ~/.ssh/config
 alias sudo='sudo '  # If the last character of the alias value is a space or tab character,
                     # then the next command word following the alias is also checked for alias expansion.
 
-# this is because
-# rm foo 2>/dev/null works when foo is not present, but
-# rm foo* 2>/dev/null 
-# doesn't... 
-setopt null_glob
 
 alias textedit='open -a /Applications/TextEdit.app'
 
@@ -223,10 +224,7 @@ alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar 
 
 alias wetter='curl http://wttr.in/Hamburg'
 
-
-alias intra='pbpaste | intranet.py'
-
-alias gx='gitx .'
+alias gitx='open -a /usr/local/Caskroom/rowanj-gitx/0.15.1964/GitX.app .'
 
 lat() {
     if [[ -z $1 ]]; then NO=10
@@ -241,7 +239,7 @@ alias dirsizes='find . -type d -maxdepth 1 -exec sh -c "du -h {} | tail -n 1" \;
 
 alias deleteempty='find . -empty -print -delete'
 
-function dirwise() {
+dirwise() {
     for d in `find . -type d -maxdepth 1`; do
         (cd $d && pwd)
     done
@@ -260,33 +258,38 @@ tailf() {
 
 alias -g G='| grep'
 alias -g W='| wc -l'
+alias -g E='| xargs -o vi'
+alias -g J='| jq'
+highlight() { grep --color -E "$1|$" }
+alias -g H='| highlight'
+alias -g X='| xargs'
+alias -g L='| less'
 
 f() {
-    find . -name "*$1*" -print
+    find . -iname "*$1*" -print
 }
+
 fe() { find . -name $1 -print }
-
-alias gcb='git rev-parse --abbrev-ref HEAD'
-
-PATH=$PATH:~/scripts
-
-alias find='noglob find'
-alias zmv='noglob zmv -W'
 
 e() {
     pss "$1" -l | xargs -o vi
 }
 
-alias e='fzf --bind "v:execute(vim {})"'
-alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+gi() {
+    grep -ri $1 .
+}
 
+alias find='noglob find'
+alias zmv='noglob zmv -W'
+alias jq='noglob jq'
+alias e='fzf --bind "v:execute(vim {})"'
 
 BACKUP_PATH=$HOME/Dropbox/backup
 alias backup='borg create -v --stats --progress $BACKUP_PATH::backup-{now:%Y-%m-%d} $HOME/Desktop/first\ Project $HOME/documents $HOME/Downloads $HOME/Music $HOME/Pictures $HOME/projekt $HOME/code $HOME/passwd.kdbx'
 alias backup-list='borg list $BACKUP_PATH'
 alias backup-prune='borg prune --keep-last 1 $BACKUP_PATH'
 
-
+alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
 alias wifi-connect='networksetup -setairportnetwork en0'
 
 split() {
@@ -305,11 +308,22 @@ wifi() {
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
 
-bindkey '^P' up-line-or-search      # make ^P behave exactly like arrow up
-
 alias list-timezones='sudo systemsetup -listtimezones'
 
-week() { python -c "from datetime import datetime; print datetime.now().isocalendar()[1]" }
+week() { python -c "from datetime import datetime; print(datetime.now().isocalendar()[1])" }
 
 alias date-berlin='TZ=Europe/Berlin date'
 alias date-ny='TZ=US/Eastern date'
+
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+alias https='http --default-scheme=https'
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# quick n dirty for swagger output
+find-url() {
+    jq '.paths | to_entries[] | select (.key == "$1") .value'
+}
+
+export VIRTUALENV_PYTHON=/usr/local/bin/python3
+
+alias pyclean='find . -type d -name __pycache__ -exec rm -rf {} \;'
