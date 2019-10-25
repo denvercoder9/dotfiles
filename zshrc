@@ -2,7 +2,7 @@
 #
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(git git-flow autojump)
+plugins=(git git-flow autojump history-search-multi-word)
 source $ZSH/oh-my-zsh.sh
 
 # my own stuff
@@ -105,6 +105,7 @@ if [ -e $VIRTUALENV_PATH ]; then
     . $VIRTUALENV_PATH
 fi
 
+bindkey \^V history-incremental-search-backward
 bindkey \^W backward-kill-word
 bindkey \^U backward-kill-line
 # bindkey '^P' up-line-or-search      # make ^P behave exactly like arrow up
@@ -220,7 +221,6 @@ alias redis-cli='rlwrap redis-cli'
 alias racket='rlwrap racket'
 alias lisp='rlwrap sbcl'
 alias node="env NODE_NO_READLINE=1 rlwrap node"
-alias clojure='(cd ~/Downloads/clojure-1.6.0; rlwrap java -cp clojure-1.6.0.jar clojure.main)'
 
 alias wetter='curl http://wttr.in/Hamburg'
 
@@ -261,9 +261,11 @@ alias -g W='| wc -l'
 alias -g E='| xargs -o vi'
 alias -g J='| jq'
 highlight() { grep --color -E "$1|$" }
-alias -g H='| highlight'
+alias -g HL='| highlight'
 alias -g X='| xargs'
 alias -g L='| less'
+alias -g H='| head'
+alias -g T='| tail'
 
 f() {
     find . -iname "*$1*" -print
@@ -285,7 +287,7 @@ alias jq='noglob jq'
 alias e='fzf --bind "v:execute(vim {})"'
 
 BACKUP_PATH=$HOME/Dropbox/backup
-alias backup='borg create -v --stats --progress $BACKUP_PATH::backup-{now:%Y-%m-%d} $HOME/Desktop/first\ Project $HOME/documents $HOME/Downloads $HOME/Music $HOME/Pictures $HOME/projekt $HOME/code $HOME/passwd.kdbx'
+alias backup='borg create -v --stats --progress $BACKUP_PATH::backup-{now:%Y-%m-%d} $HOME/Desktop/first\ Project $HOME/documents $HOME/Downloads $HOME/Music $HOME/Pictures $HOME/projekt $HOME/code $HOME/passwd.kdbx $HOME/.task'
 alias backup-list='borg list $BACKUP_PATH'
 alias backup-prune='borg prune --keep-last 1 $BACKUP_PATH'
 
@@ -326,4 +328,8 @@ find-url() {
 
 export VIRTUALENV_PYTHON=/usr/local/bin/python3
 
+alias pip='pip --no-cache'
+alias tree='tree -I __pycache__'
 alias pyclean='find . -type d -name __pycache__ -exec rm -rf {} \;'
+alias psql=/Applications/Postgres.app/Contents/Versions/9.4/bin/psql
+alias my-ip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
