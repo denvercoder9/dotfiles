@@ -45,6 +45,7 @@ alias gl='git pull --stat'
 alias gco-='git checkout -'
 alias glp='git log --patch'
 alias gpp='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gr='git pull -r'
 
 alias gss='git stash show'
 alias gssp='git stash show -p'
@@ -169,13 +170,6 @@ fi
 
 alias py.test='python -m py.test -s -l --tb=short --strict'
 
-postjson() {
-    curl -X POST $1 -H "Content-Type:application/json" -d $2
-}
-putjson() {
-    curl -X PUT $1 -H "Content-Type:application/json" -d $2
-}
-
 alias pbp='pbpaste'
 alias pjq='pbpaste | jq'
 alias pbc='pbcopy'
@@ -257,6 +251,7 @@ tailf() {
 }
 
 alias -g G='| grep'
+alias -g V='| grep -v'
 alias -g W='| wc -l'
 alias -g E='| xargs -o vi'
 alias -g J='| jq'
