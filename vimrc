@@ -140,7 +140,7 @@ nmap K <Nop>
 imap jj <esc>
 cmap w!! w !sudo tee %
 
-map ä $
+map ö $
 map å 0
 
 
