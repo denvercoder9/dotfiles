@@ -55,7 +55,6 @@ alias gsl='git stash list'
 alias gg='git --no-pager'
 alias gcb='git rev-parse --abbrev-ref HEAD'
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
 
 pg() {
     (ps aux | head -n 1) && (ps aux | grep -i $1)
@@ -99,11 +98,12 @@ else
     fi
 fi
 
-export VIRTUALENV_PATH=/usr/local/bin/virtualenvwrapper.sh
-if [ -e $VIRTUALENV_PATH ]; then
+export VIRTUALENV_PYTHON=~/.virtualenvs/otto/bin/python3
+export VIRTUALENV_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+if [ -e $VIRTUALENV_SCRIPT ]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Projects
-    . $VIRTUALENV_PATH
+    . $VIRTUALENV_SCRIPT > /dev/null 2>&1
 fi
 
 bindkey \^V history-incremental-search-backward
@@ -218,7 +218,7 @@ alias node="env NODE_NO_READLINE=1 rlwrap node"
 
 alias wetter='curl http://wttr.in/Hamburg'
 
-alias gitx='open -a /usr/local/Caskroom/rowanj-gitx/0.15.1964/GitX.app .'
+alias gitx='open -a /usr/local/Caskroom/rowanj-gitx/0.15,1964/GitX.app .'
 
 lat() {
     if [[ -z $1 ]]; then NO=10
@@ -268,9 +268,9 @@ f() {
 
 fe() { find . -name $1 -print }
 
-e() {
-    pss "$1" -l | xargs -o vi
-}
+#e() {
+#    pss "$1" -l | xargs -o vi
+#}
 
 gi() {
     grep -ri $1 .
@@ -279,7 +279,6 @@ gi() {
 alias find='noglob find'
 alias zmv='noglob zmv -W'
 alias jq='noglob jq'
-alias e='fzf --bind "v:execute(vim {})"'
 
 BACKUP_PATH=$HOME/Dropbox/backup
 alias backup='borg create -v --stats --progress $BACKUP_PATH::backup-{now:%Y-%m-%d} $HOME/Desktop/first\ Project $HOME/documents $HOME/Downloads $HOME/Music $HOME/Pictures $HOME/projekt $HOME/code $HOME/passwd.kdbx $HOME/.task'
@@ -303,8 +302,6 @@ wifi() {
     wifi-connect $1 $2
 }
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/code/python/bin
-
 alias list-timezones='sudo systemsetup -listtimezones'
 
 week() { python -c "from datetime import datetime; print(datetime.now().isocalendar()[1])" }
@@ -314,17 +311,45 @@ alias date-ny='TZ=US/Eastern date'
 
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 alias https='http --default-scheme=https'
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # quick n dirty for swagger output
 find-url() {
     jq '.paths | to_entries[] | select (.key == "$1") .value'
 }
 
-export VIRTUALENV_PYTHON=/usr/local/bin/python3
-
-alias pip='pip --no-cache'
+#alias pip='pip --no-cache'
 alias tree='tree -I __pycache__'
 alias pyclean='find . -type d -name __pycache__ -exec rm -rf {} \;'
-alias psql=/Applications/Postgres.app/Contents/Versions/9.4/bin/psql
+#alias psql=/Applications/Postgres.app/Contents/Versions/9.4/bin/psql
 alias my-ip='dig TXT +short o-o.myaddr.l.google.com @ns1.google.com'
+
+workon otto2
+
+export PATH=$PATH:$HOME/bin:/usr/local/opt/python@3.8/bin:/usr/local/bin:/usr/local/sbin:$PATH:~/bin:$HOME/projects/nav_scripts
+
+alias swamp-nav-nonlive-readonly="swamp -account 652837427747 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-nonlive-readonly -target-role readonly"
+alias swamp-nav-nonlive-developer="swamp -account 652837427747 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-nonlive-developer -target-role developer"
+alias swamp-nav-nonlive-admin="swamp -account 652837427747 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-nonlive-admin -target-role admin"
+alias swamp-nav-live-readonly="swamp -account 758683619057 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-live-readonly -target-role readonly"
+alias swamp-nav-live-developer="swamp -account 758683619057 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-live-developer -target-role developer"
+alias swamp-nav-live-admin="swamp -account 758683619057 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-live-admin -target-role admin"
+alias swamp-nav-infrastructure-readonly="swamp -account 230874101425 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-infrastructure-readonly -target-role readonly"
+alias swamp-nav-infrastructure-developer="swamp -account 230874101425 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-infrastructure-developer -target-role developer"
+alias swamp-nav-infrastructure-admin="swamp -account 230874101425 -mfa-device arn:aws:iam::027617375449:mfa/fmelande -target-profile nav-infrastructure-admin -target-role admin"
+
+alias jj='jet --from edn --to json | jq .'
+
+export PATH=$HOME/bin:$PATH
+
+alias -g B='| bb -i -e'
+
+alias jag='ag --clojure'
+alias bb='rlwrap bb'
+alias pc="pwd | pbcopy"
+
+
+__bb_tasks() {
+    local matches=(`bb tasks|tail -n +3|cut -f1 -d ' '`)
+    compadd -a matches
+}
+compdef _bb_tasks bb

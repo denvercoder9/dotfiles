@@ -1,10 +1,10 @@
 [user]
-	name = Fredrik
+	name = Fredrik Melander
 	email = fredrik.melander@gmail.com
 [push]
 	default = upstream
 [core]
-	excludesfile = .gitignore
+	excludesfile = /Users/fmelande/.gitignore
 [color]
 	ui = true
 	l = log --patch
